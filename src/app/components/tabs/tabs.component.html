@@ -1,19 +1,19 @@
 <div class="text-center">
 	<ul class="tabs">
-		<li>
-			<h1><a routerLink="/" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">Today</a></h1>
+		<li routerLink="/">
+			<h1><a routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}">Today</a></h1>
 		</li>
 
-		<li>
-			<h1><a routerLink="/tomorrow" routerLinkActive="selected">Tomorrow</a></h1>
+		<li routerLink="/tomorrow">
+			<h1><a routerLinkActive="selected">Tomorrow</a></h1>
 		</li>
 
-		<li>
-			<h1><a routerLink="/all" routerLinkActive="selected">All</a></h1>
+		<li routerLink="/all">
+			<h1><a routerLinkActive="selected">All</a></h1>
 		</li>
 
-		<li>
-			<h1><a routerLink="/new" routerLinkActive="selected">New</a></h1>
+		<li routerLink="/new">
+			<h1><a routerLinkActive="selected">New</a></h1>
 		</li>
 	</ul>
 </div>
