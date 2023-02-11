@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
 	selector: 'app-user-card',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class UserCardComponent {
 	userName = "Agreyddous";
+
+	constructor(
+		private afAuth: AngularFireAuth
+	) { }
+
+	logout() {
+		this.afAuth.signOut();
+	}
 }
