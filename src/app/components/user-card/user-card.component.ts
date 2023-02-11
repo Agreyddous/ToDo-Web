@@ -7,11 +7,18 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 	styleUrls: ['./user-card.component.css']
 })
 export class UserCardComponent {
-	userName = "Agreyddous";
+	public user: any = { name: "", picture: "" };
 
 	constructor(
 		private afAuth: AngularFireAuth
-	) { }
+	) {
+		this.afAuth.user.subscribe((userData) => {
+			if (userData) {
+				this.user.name = userData?.displayName;
+				this.user.picture = userData?.photoURL;
+			}
+		});
+	}
 
 	logout() {
 		this.afAuth.signOut();
