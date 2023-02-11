@@ -14,32 +14,36 @@ import { AllComponent } from './pages/all/all.component';
 import { TodayComponent } from './pages/today/today.component';
 import { TomorrowComponent } from './pages/tomorrow/tomorrow.component';
 import { NewComponent } from './pages/new/new.component';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    CardComponent,
-    ButtonComponent,
-    LoginComponent,
-    UserCardComponent,
-    TabsComponent,
-    TodoListComponent,
-    AllComponent,
-    TodayComponent,
-    TomorrowComponent,
-    NewComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth())
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		HomeComponent,
+		CardComponent,
+		ButtonComponent,
+		LoginComponent,
+		UserCardComponent,
+		TabsComponent,
+		TodoListComponent,
+		AllComponent,
+		TodayComponent,
+		TomorrowComponent,
+		NewComponent
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		provideFirebaseApp(() => initializeApp(environment.firebase)),
+		provideAuth(() => getAuth())
+	],
+	providers: [
+		{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }
