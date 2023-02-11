@@ -7,3 +7,15 @@ body {
 	align-items: center;
 	justify-items: center;
 }
+
+a {
+	color: #fa4d73;
+	text-decoration: none;
+	cursor: pointer;
+	transition: color 0.25s;
+}
+
+a:hover {
+	color: #fa5b70;
+	transition: color 1s;
+}
