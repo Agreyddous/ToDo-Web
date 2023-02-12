@@ -1,26 +1,31 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class BackendService {
-	public baseUrl = "http://localhost:5189";
+	private baseUrl: string;
+	private version: string;
 
 	constructor(
 		private httpClient: HttpClient
-	) { }
+	) {
+		this.baseUrl = environment.backend.baseUrl;
+		this.version = environment.backend.version;
+	}
 
 	public getTodayToDoItems(authToken: string | null) {
-		return this.requestFromBackend(authToken, 'get', 'v1/ToDoItems/Today');
+		return this.requestFromBackend(authToken, 'get', 'ToDoItems/Today');
 	}
 
 	public getTomorrowToDoItems(authToken: string | null) {
-		return this.requestFromBackend(authToken, 'get', 'v1/ToDoItems/Tomorrow');
+		return this.requestFromBackend(authToken, 'get', 'ToDoItems/Tomorrow');
 	}
 
 	public getAllToDoItems(authToken: string | null) {
-		return this.requestFromBackend(authToken, 'get', 'v1/ToDoItems');
+		return this.requestFromBackend(authToken, 'get', 'ToDoItems');
 	}
 
 	public createToDoItem(
@@ -29,7 +34,7 @@ export class BackendService {
 		description: string,
 		dueDate: Date
 	) {
-		return this.requestFromBackend(authToken, 'post', 'v1/ToDoItems', { title, description, dueDate })
+		return this.requestFromBackend(authToken, 'post', 'ToDoItems', { title, description, dueDate })
 	}
 
 	public updateToDoItem(
@@ -39,21 +44,21 @@ export class BackendService {
 		description: string,
 		dueDate: Date
 	) {
-		return this.requestFromBackend(authToken, 'put', `v1/ToDoItems/${id}`, { title, description, dueDate })
+		return this.requestFromBackend(authToken, 'put', `ToDoItems/${id}`, { title, description, dueDate })
 	}
 
 	public completeToDoItem(
 		authToken: string | null,
 		id: string
 	) {
-		return this.requestFromBackend(authToken, 'post', `v1/ToDoItems/${id}/Complete`)
+		return this.requestFromBackend(authToken, 'post', `ToDoItems/${id}/Complete`)
 	}
 
 	public undoCompleteToDoItem(
 		authToken: string | null,
 		id: string
 	) {
-		return this.requestFromBackend(authToken, 'post', `v1/ToDoItems/${id}/Undo`)
+		return this.requestFromBackend(authToken, 'post', `ToDoItems/${id}/Undo`)
 	}
 
 	private requestFromBackend(
@@ -62,7 +67,7 @@ export class BackendService {
 		uri: string,
 		body: any = null
 	) {
-		return this.httpClient.request(method, `${this.baseUrl}/${uri}`, { body: body, headers: this.composeHeaders(authToken) })
+		return this.httpClient.request(method, `${this.baseUrl}/${this.version}/${uri}`, { body: body, headers: this.composeHeaders(authToken) })
 	}
 
 	private composeHeaders(token: string | null): HttpHeaders {

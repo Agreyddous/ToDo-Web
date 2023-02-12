@@ -10,7 +10,11 @@ export const environment = {
 		apiKey: '',
 		authDomain: '',
 		messagingSenderId: '',
-		measurementId: '',
+		measurementId: ''
 	},
 	production: false,
+	backend: {
+		baseUrl: 'http://localhost:5189',
+		version: 'v1'
+	}
 };
