@@ -1,30 +1,30 @@
-<form>
+<form [formGroup]="form">
 	<h1>What are you planning?</h1>
-	<textarea cols="30" rows="1" placeholder="e.g. Play Halo"></textarea>
-	<small class="error">
+	<textarea cols="30" rows="1" formControlName="title" placeholder="e.g. Play Halo"></textarea>
+	<small class="error" *ngIf="form.controls['title'].invalid">
 		<strong>Invalid title</strong>
 	</small>
 
 	<br>
 
 	<h3>Wanna describe it more?</h3>
-	<textarea cols="30" rows="2" placeholder="e.g. Play the newly added Battle Pass tonight with my friends!"></textarea>
-	<small class="error">
+	<textarea cols="30" rows="2" formControlName="description" placeholder="e.g. Play the newly added Battle Pass tonight with my friends!"></textarea>
+	<small class="error" *ngIf="form.controls['description'].invalid">
 		<strong>Invalid description</strong>
 	</small>
 
 	<br>
 
 	<h3>When is it due?</h3>
-	<input type="date">
-	<small class="error">
+	<input formControlName="dueDate" type="date">
+	<small class="error" *ngIf="form.controls['dueDate'].invalid">
 		<strong>Invalid due date</strong>
 	</small>
 
 	<br><br>
 
 	<p class="text-right">
-		<app-button>
+		<app-button (click)="submit()" [disabled]="form.invalid">
 			<i class="fa fa-save"></i>
 		</app-button>
 	</p>
