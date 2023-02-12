@@ -2,7 +2,8 @@
 <ul class="toDos" *ngIf="toDos">
 	<li *ngFor="let toDo of toDos">
 		<div>
-			<a class="remove-item"><i class="fa fa-check"></i></a>
+			<a class="remove-item" *ngIf="!toDo.isComplete" (click)="complete(toDo)"><i class="fa fa-check"></i></a>
+			<a class="remove-item" *ngIf="toDo.isComplete" (click)="undo(toDo)"><i class="fa fa-rotate-left"></i></a>
 		</div>
 
 		<a [ngClass]="{'done': toDo.isComplete}">
