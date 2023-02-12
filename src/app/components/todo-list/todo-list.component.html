@@ -2,13 +2,20 @@
 <ul class="toDos" *ngIf="toDos">
 	<li *ngFor="let toDo of toDos">
 		<div>
-			<a class="remove-item" *ngIf="!toDo.isComplete" (click)="complete(toDo)"><i class="fa fa-check"></i></a>
-			<a class="remove-item" *ngIf="toDo.isComplete" (click)="undo(toDo)"><i class="fa fa-rotate-left"></i></a>
+			<a class="item-action" *ngIf="!toDo.isComplete" (click)="complete(toDo)"><i class="fa fa-check"></i></a>
+			<a class="item-action" *ngIf="toDo.isComplete && !toDo.isHidden" (click)="undo(toDo)"><i class="fa fa-rotate-left"></i></a>
+		</div>
+		<div>
+			<a class="item-action" *ngIf="toDo.isComplete && !toDo.isHidden" (click)="hide(toDo)"><i class="fa fa-eye-slash"></i></a>
+			<a class="item-action" *ngIf="toDo.isComplete && toDo.isHidden" (click)="show(toDo)"><i class="fa fa-eye"></i></a>
 		</div>
 
 		<a [ngClass]="{'done': toDo.isComplete}">
 			{{toDo.title}} <br>
-			<small>{{ toDo.dueDate | date: 'dd/MM/yy' }}</small>
+			<div class="informational">
+				{{toDo.description}} <br>
+				Due {{ toDo.dueDate | date: 'dd/MM/yy' }}
+			</div>
 		</a>
 	</li>
 </ul>

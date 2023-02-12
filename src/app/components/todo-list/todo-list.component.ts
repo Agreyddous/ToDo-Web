@@ -24,4 +24,14 @@ export class TodoListComponent {
 		this.afAuth.idToken.subscribe(authToken =>
 			this.backend.undoCompleteToDoItem(authToken, toDo.id).subscribe(() => toDo.isComplete = false))
 	}
+
+	hide(toDo: any) {
+		this.afAuth.idToken.subscribe(authToken =>
+			this.backend.hideToDoItem(authToken, toDo.id).subscribe(() => toDo.isHidden = true))
+	}
+
+	show(toDo: any) {
+		this.afAuth.idToken.subscribe(authToken =>
+			this.backend.showToDoItem(authToken, toDo.id).subscribe(() => toDo.isHidden = false))
+	}
 }
