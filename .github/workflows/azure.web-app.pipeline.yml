@@ -25,7 +25,7 @@ jobs:
 
       - name: ng build
         run: |
-          ng build --prod
+          ng build --configuration production
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
