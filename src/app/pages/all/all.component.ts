@@ -17,7 +17,7 @@ export class AllComponent {
 
 	ngOnInit(): void {
 		this.afAuth.idToken.subscribe(authToken =>
-			this.backend.getAllToDoItems(authToken)
+			this.backend.getAllAvailableToDoItems(authToken)
 				.subscribe((data: any) => this.toDos = data));
 	}
 }
