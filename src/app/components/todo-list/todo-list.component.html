@@ -1,45 +1,13 @@
-<ul class="todos">
-	<li>
+<i class="fa fa-spinner fa-spin fa-2x" *ngIf="!toDos"></i>
+<ul class="toDos" *ngIf="toDos">
+	<li *ngFor="let toDo of toDos">
 		<div>
 			<a class="remove-item"><i class="fa fa-check"></i></a>
 		</div>
 
-		<a>
-			Go to supermarket <br>
-			<small>06/06/1998</small>
-		</a>
-	</li>
-
-	<li>
-		<div>
-			<a class="remove-item"><i class="fa fa-check"></i></a>
-		</div>
-
-		<a>
-			Go to supermarket <br>
-			<small>06/06/1998</small>
-		</a>
-	</li>
-
-	<li>
-		<div>
-			<a class="remove-item"><i class="fa fa-check"></i></a>
-		</div>
-
-		<a>
-			Go to supermarket <br>
-			<small>06/06/1998</small>
-		</a>
-	</li>
-
-	<li>
-		<div>
-			<a class="remove-item"><i class="fa fa-check"></i></a>
-		</div>
-
-		<a>
-			Go to supermarket <br>
-			<small>06/06/1998</small>
+		<a [ngClass]="{'done': toDo.isComplete}">
+			{{toDo.title}} <br>
+			<small>{{ toDo.dueDate | date: 'dd/MM/yy' }}</small>
 		</a>
 	</li>
 </ul>
