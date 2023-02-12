@@ -21,6 +21,7 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { HiddenComponent } from './pages/hidden/hidden.component';
 
 @NgModule({
 	declarations: [
@@ -35,7 +36,8 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 		AllComponent,
 		TodayComponent,
 		TomorrowComponent,
-		NewComponent
+		NewComponent,
+		HiddenComponent
 	],
 	imports: [
 		BrowserModule,
