@@ -5,26 +5,26 @@ import { Injectable } from '@angular/core';
 	providedIn: 'root'
 })
 export class BackendService {
-	public baseUrl = "https://localhost:5189";
+	public baseUrl = "http://localhost:5189";
 
 	constructor(
 		private httpClient: HttpClient
 	) { }
 
-	public getTodayToDoItems(authToken: string) {
+	public getTodayToDoItems(authToken: string | null) {
 		return this.requestFromBackend(authToken, 'get', 'v1/ToDoItems/Today');
 	}
 
-	public getTomorrowToDoItems(authToken: string) {
+	public getTomorrowToDoItems(authToken: string | null) {
 		return this.requestFromBackend(authToken, 'get', 'v1/ToDoItems/Tomorrow');
 	}
 
-	public getAllToDoItems(authToken: string) {
+	public getAllToDoItems(authToken: string | null) {
 		return this.requestFromBackend(authToken, 'get', 'v1/ToDoItems');
 	}
 
 	public createToDoItem(
-		authToken: string,
+		authToken: string | null,
 		title: string,
 		description: string,
 		dueDate: Date
@@ -33,7 +33,7 @@ export class BackendService {
 	}
 
 	public updateToDoItem(
-		authToken: string,
+		authToken: string | null,
 		id: string,
 		title: string,
 		description: string,
@@ -43,21 +43,21 @@ export class BackendService {
 	}
 
 	public completeToDoItem(
-		authToken: string,
+		authToken: string | null,
 		id: string
 	) {
 		return this.requestFromBackend(authToken, 'post', `v1/ToDoItems/${id}/Complete`)
 	}
 
 	public undoCompleteToDoItem(
-		authToken: string,
+		authToken: string | null,
 		id: string
 	) {
 		return this.requestFromBackend(authToken, 'post', `v1/ToDoItems/${id}/Undo`)
 	}
 
 	private requestFromBackend(
-		authToken: string,
+		authToken: string | null,
 		method: string,
 		uri: string,
 		body: any = null
@@ -65,11 +65,11 @@ export class BackendService {
 		return this.httpClient.request(method, `${this.baseUrl}/${uri}`, { body: body, headers: this.composeHeaders(authToken) })
 	}
 
-	private composeHeaders(token: string): HttpHeaders {
+	private composeHeaders(token: string | null): HttpHeaders {
 		let headers: HttpHeaders = new HttpHeaders();
 
 		if (token)
-			headers.set('Authorization', `Bearer: ${token}`)
+			headers = headers.set('Authorization', `Bearer ${token}`)
 
 		return headers;
 	}
