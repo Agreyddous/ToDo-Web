@@ -12,7 +12,7 @@ export class LoginComponent {
 		private afAuth: AngularFireAuth
 	) { }
 
-	login() {
-		this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+	loginGoogle() {
+		this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider);
 	}
 }
