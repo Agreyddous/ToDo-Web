@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: "agreyddous-to-do"
           slot-name: "production"
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_dd312e1ad9fe4f7281385e0471e0b6b2 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C0EBD43FB4284A47AB0F3E3882C9FC74 }}
           package: .
